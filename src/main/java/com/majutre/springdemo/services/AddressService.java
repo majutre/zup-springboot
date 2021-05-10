@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.majutre.springdemo.domain.Address;
-import com.majutre.springdemo.domain.User;
 import com.majutre.springdemo.dto.AddressDTO;
-import com.majutre.springdemo.dto.UserNewDTO;
 import com.majutre.springdemo.repositories.AddressRepository;
 
 @Service
