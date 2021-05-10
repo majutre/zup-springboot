@@ -10,10 +10,6 @@ public class HttpStandardError implements Serializable {
 	private Integer status;
 	private String message;
 	private Instant timestamp;
-	
-	public HttpStandardError() {
-		
-	}
 
 	public HttpStandardError(Integer status, String message, Instant timestamp) {
 		this.status = status;
