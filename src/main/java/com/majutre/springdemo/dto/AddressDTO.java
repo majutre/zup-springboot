@@ -2,6 +2,8 @@ package com.majutre.springdemo.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.majutre.springdemo.domain.Address;
 import com.majutre.springdemo.domain.User;
 
@@ -11,12 +13,25 @@ public class AddressDTO implements Serializable {
 
 	private User user;
 
+	@NotEmpty(message = "O CEP é obrigatório.")
 	private String cep;
+	
+	@NotEmpty(message = "O logradouro é obrigatório.")
 	private String logradouro;
+	
+	@NotEmpty(message = "O número é obrigatório.")
 	private String numero;
+	
+	@NotEmpty(message = "O complemento é obrigatório.")
 	private String complemento;
+	
+	@NotEmpty(message = "O bairro é obrigatório.")
 	private String bairro;
+	
+	@NotEmpty(message = "Insira uma cidade.")
 	private String cidade;
+	
+	@NotEmpty(message = "Insira um estado.")
 	private String estado;
 	
 	public AddressDTO() {

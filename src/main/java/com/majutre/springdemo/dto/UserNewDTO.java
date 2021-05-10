@@ -5,8 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.majutre.springdemo.domain.Address;
 import com.majutre.springdemo.domain.User;
 import com.majutre.springdemo.services.UserService;
@@ -15,10 +19,18 @@ public class UserNewDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-
+	@NotEmpty(message = "O nome é obrigatório.")
 	private String name;
+	
+	@NotEmpty(message = "O e-mail é obrigatório.")
+	@Email(message = "E-mail inválido.")
 	private String email;
+	
+	@NotEmpty(message = "O CPF é obrigatório.")
+	//@CPF(message = "CPF inválido.")
 	private String cpf;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
 
 	private List<Address> addresses = new ArrayList<>();

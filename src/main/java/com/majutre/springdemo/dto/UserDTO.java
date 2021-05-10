@@ -1,6 +1,6 @@
 package com.majutre.springdemo.dto;
 
-import javax.validation.constraints.NotEmpty;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +14,6 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
-	@NotEmpty(message = "O nome é obrigatório.")
 	private String name;
 	
 	private List<Address> addresses = new ArrayList<>();
@@ -24,7 +22,6 @@ public class UserDTO implements Serializable {
 		
 	}
 	
-
 	public UserDTO(User obj) {
 		id = obj.getId();
 		name = obj.getName();

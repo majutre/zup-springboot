@@ -37,19 +37,14 @@ public class UserService {
 	@Transactional
 	public User insert(User obj) {
 		obj = repository.save(obj);
-//		addrRepository.saveAll(obj.getAddresses());
 		
 		return repository.save(obj);		
 	}
 
 	public User fromDTO(UserNewDTO objDto) {
 		User user = new User(null, objDto.getName(), objDto.getEmail(), objDto.getCpf(), objDto.getBirthDate());
-		
 		List<Address> list = objDto.getAddresses();
-//		for (Address addr : list) {			
-//			
-//			user.getAddresses().add(addr);
-//		}
+
 		user.setAddresses(list);
 		return user;
 	}
