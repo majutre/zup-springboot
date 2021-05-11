@@ -23,7 +23,7 @@ public class UserService {
 
 	@Autowired
 	private AddressRepository addrRepository;
-	
+
 	public List<User> findAll() {
 		return repository.findAll();
 	}
@@ -37,21 +37,25 @@ public class UserService {
 	@Transactional
 	public User insert(User obj) {
 		obj = repository.save(obj);
-		
-		return repository.save(obj);		
+		addrRepository.saveAll(obj.getAddresses());
+
+		return obj;
 	}
 
 	public User fromDTO(UserNewDTO objDto) {
 		User user = new User(null, objDto.getName(), objDto.getEmail(), objDto.getCpf(), objDto.getBirthDate());
-		List<Address> list = objDto.getAddresses();
+		Address addr = new Address(null, objDto.getCep(), objDto.getLogradouro(), objDto.getNumero(),
+									objDto.getComplemento(), objDto.getBairro(), objDto.getCidade(), objDto.getEstado(), user);
 
-		user.setAddresses(list);
+		user.addAddress(addr);
 		return user;
 	}
-	
+
 	public Address addNewAddress(Long id, Address addr) {
-		Address address = new Address(null, addr.getCep(), addr.getLogradouro(), addr.getNumero(), addr.getComplemento(), addr.getBairro(), addr.getCidade(), addr.getEstado(), findById(id));
-		return addrRepository.save(address);
+		Address address = new Address(null, addr.getCep(), addr.getLogradouro(), addr.getNumero(),
+										addr.getComplemento(), addr.getBairro(), addr.getCidade(), addr.getEstado(), findById(id));
 		
+		return addrRepository.save(address);
+
 	}
 }

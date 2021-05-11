@@ -45,6 +45,7 @@ public class UserResource {
 	public ResponseEntity<Void> insert(@Valid @RequestBody UserNewDTO objDto){
 		User obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
+		obj.setAddresses(objDto.getAddresses());
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();

@@ -51,11 +51,7 @@ public class User implements Serializable {
 		this.cpf = cpf;
 		this.birthDate = birthDate;
 	}
-	
-	public void addAddress(Address address) {
-        this.addresses.add(address);
-    }
-	
+		
 	public Long getId() {
 		return id;
 	}
@@ -84,8 +80,13 @@ public class User implements Serializable {
 		return addresses;
 	}
 
+	public void addAddress(Address address) {
+		this.addresses.add(address);
+	}
+
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
 
+	
 }

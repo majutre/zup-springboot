@@ -1,5 +1,6 @@
 package com.majutre.springdemo.resources.exceptions;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Instant;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,4 +45,14 @@ public class ResourceExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
+	
+	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+	public ResponseEntity<HttpStandardError> integrityError(SQLIntegrityConstraintViolationException e, HttpServletRequest req){
+		
+		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), Instant.now());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
+	
+	
 }
